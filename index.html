@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NT Shabangu & Associates – Attorneys at Law</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #B8922A;
+    --gold-light: #D4AB45;
+    --dark: #FAF8F3;
+    --dark2: #F3EEE5;
+    --dark3: #EDE6D8;
+    --mid: #E4DDD0;
+    --text: #1E1810;
+    --muted: #7A6F62;
+    --white: #FFFFFF;
+    --navy: #1C2B4A;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.98); border-bottom: 1px solid rgba(184,146,42,0.2);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between; height: 72px;
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); letter-spacing: 0.04em; }
+  .logo span { display: block; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 400; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px; }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+  nav ul a:hover { color: var(--navy); }
+  .nav-cta { background: var(--gold); color: var(--white) !important; padding: 9px 22px; font-weight: 600 !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 72px 5% 0;
+    background: var(--dark);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+    background: linear-gradient(135deg, #EDE6D4 0%, #FAF8F3 60%);
+    border-left: 1px solid rgba(184,146,42,0.2);
+  }
+  .hero-text { position: relative; z-index: 2; max-width: 560px; }
+  .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1; font-weight: 700; color: var(--navy);
+    margin-bottom: 28px;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero p { font-size: 1.05rem; line-height: 1.8; color: var(--muted); margin-bottom: 40px; max-width: 480px; }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--white); padding: 14px 32px; font-weight: 600; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline { border: 1px solid rgba(184,146,42,0.5); color: var(--gold); padding: 14px 32px; font-weight: 500; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+  .hero-stats {
+    position: absolute; bottom: 60px; right: 5%; z-index: 2;
+    display: flex; gap: 48px;
+  }
+  .stat { text-align: right; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--gold); display: block; }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+
+  /* GOLD LINE DIVIDER */
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0; }
+
+  /* ABOUT */
+  .section { padding: 96px 5%; background: var(--white); }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--navy); margin-bottom: 24px; line-height: 1.2; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-text p { color: var(--muted); line-height: 1.9; margin-bottom: 20px; font-size: 0.98rem; }
+  .about-values { background: var(--dark2); border: 1px solid rgba(184,146,42,0.2); padding: 40px; }
+  .value-item { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+  .value-item:last-child { border-bottom: none; }
+  .value-item h4 { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+  .value-item p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+
+  /* PRACTICE AREAS */
+  .practice-bg { background: var(--dark2); }
+  .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+  .practice-card {
+    background: var(--white); padding: 40px 32px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .practice-card:hover { border-top-color: var(--gold); background: var(--dark2); }
+  .practice-icon { font-size: 2rem; margin-bottom: 20px; color: var(--gold); }
+  .practice-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 14px; }
+  .practice-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.8; }
+
+  /* ATTORNEY */
+  .attorney-section { padding: 96px 5%; background: var(--white); }
+  .attorney-grid { display: grid; grid-template-columns: 400px 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+  .attorney-img {
+    background: var(--dark3); border: 1px solid rgba(184,146,42,0.25);
+    aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 6rem; color: var(--gold);
+  }
+  .attorney-info h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 6px; }
+  .attorney-title { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; display: block; }
+  .attorney-info p { color: var(--muted); line-height: 1.9; margin-bottom: 16px; font-size: 0.95rem; }
+  .qualifications { margin-top: 32px; }
+  .qualifications h4 { color: var(--navy); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+  .qual-list { list-style: none; }
+  .qual-list li { color: var(--muted); font-size: 0.88rem; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06); padding-left: 20px; position: relative; }
+  .qual-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+  /* WHY US */
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 56px; }
+  .why-card { text-align: center; padding: 40px 20px; }
+  .why-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); display: block; margin-bottom: 12px; }
+  .why-card h4 { color: var(--navy); font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+  .why-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+
+  /* TESTIMONIALS */
+  .testimonials-bg { background: var(--dark2); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+  .testimonial {
+    background: var(--white); padding: 40px 32px;
+    border-bottom: 3px solid transparent; transition: border-color 0.2s;
+  }
+  .testimonial:hover { border-bottom-color: var(--gold); }
+  .quote-mark { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--gold); line-height: 0.5; margin-bottom: 24px; display: block; opacity: 0.4; }
+  .testimonial p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 24px; font-style: italic; }
+  .testimonial-author { color: var(--navy); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+  .testimonial-role { color: var(--muted); font-size: 0.78rem; margin-top: 4px; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 56px; }
+  .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 24px; }
+  .contact-detail { margin-bottom: 24px; }
+  .contact-detail label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .contact-detail p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    background: var(--dark2); border: 1px solid rgba(184,146,42,0.25); color: var(--text);
+    padding: 14px 18px; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.2s; resize: vertical;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: var(--muted); }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus { border-color: var(--gold); }
+  .contact-form select option { background: var(--white); }
+  .contact-form textarea { min-height: 120px; }
+  .contact-form button {
+    background: var(--gold); color: var(--white); border: none; padding: 16px;
+    font-weight: 600; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .contact-form button:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer { background: var(--navy); border-top: 1px solid rgba(184,146,42,0.2); padding: 40px 5%; }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+  .footer-logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 0.9rem; }
+  footer p { color: rgba(255,255,255,0.45); font-size: 0.8rem; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* HAMBURGER */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); transition: all 0.3s; border-radius: 2px; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+    background: var(--white); z-index: 99; flex-direction: column;
+    padding: 32px 5%; gap: 0; overflow-y: auto; border-top: 1px solid var(--border);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 18px 0; border-bottom: 1px solid var(--border); letter-spacing: 0.04em; }
+  .mobile-menu a:last-child { margin-top: 24px; background: var(--gold); color: var(--white); text-align: center; padding: 16px; border: none; font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .about-grid, .attorney-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    .practice-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats { position: relative; bottom: auto; right: auto; margin-top: 40px; justify-content: flex-start; gap: 28px; }
+    .form-row { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { justify-content: center; flex-wrap: wrap; }
+    .section { padding: 64px 5%; }
+    .attorney-section { padding: 64px 5%; }
+    .hero { padding-bottom: 48px; min-height: auto; padding-top: 72px; }
+    .hero-text { max-width: 100%; }
+    .hero h1 { font-size: clamp(2.4rem, 9vw, 3.5rem); }
+    .hero::before { display: none; }
+    .attorney-grid { grid-template-columns: 1fr; }
+    .attorney-img { aspect-ratio: 1/1; max-height: 280px; }
+    .practice-card { padding: 28px 20px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; gap: 16px; }
+    .stat { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">
+    NT Shabangu & Associates
+    <span>Attorneys · Notaries · Conveyancers</span>
+  </div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#practice">Practice Areas</a></li>
+    <li><a href="#attorney">Our Team</a></li>
+    <li><a href="#contact" class="nav-cta">Consult Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#practice" onclick="closeMenu()">Practice Areas</a>
+  <a href="#attorney" onclick="closeMenu()">Our Team</a>
+  <a href="#contact" onclick="closeMenu()">Consult Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Established · Trusted · Results-Driven</p>
+    <h1>Justice Served With <em>Precision</em> And Purpose</h1>
+    <p>NT Shabangu and Associates delivers comprehensive legal representation across South Africa — combining deep expertise with unwavering commitment to our clients' outcomes.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Schedule a Consultation</a>
+      <a href="#practice" class="btn-outline">Our Practice Areas</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">15+</span>
+      <span class="stat-label">Years of Practice</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">500+</span>
+      <span class="stat-label">Cases Resolved</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Client Dedication</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="section-label">About the Firm</p>
+      <h2>A Legacy of Legal Excellence in South Africa</h2>
+      <p>NT Shabangu and Associates is a full-service law firm committed to providing high-quality legal services to individuals, businesses, and organisations across South Africa. We believe that access to justice is a right, not a privilege.</p>
+      <p>Our firm is built on the principle that every client deserves dedicated, personalised legal counsel — whether navigating a complex commercial matter, a property transaction, or a sensitive family dispute.</p>
+      <p>We bring a practical, results-oriented approach to every matter we handle, ensuring our clients are informed, empowered, and protected at every step of their legal journey.</p>
+      <a href="#contact" class="btn-primary" style="display:inline-block; margin-top: 8px;">Work With Us</a>    </div>
+    <div class="about-values">
+      <div class="value-item">
+        <h4>Integrity</h4>
+        <p>We uphold the highest ethical standards in every matter, ensuring complete transparency with our clients at all times.</p>
+      </div>
+      <div class="value-item">
+        <h4>Excellence</h4>
+        <p>Every case receives meticulous attention to detail, thorough legal research, and strategic thinking tailored to the specific facts.</p>
+      </div>
+      <div class="value-item">
+        <h4>Accessibility</h4>
+        <p>We are committed to making quality legal services accessible to all South Africans, regardless of background or circumstance.</p>
+      </div>
+      <div class="value-item">
+        <h4>Client First</h4>
+        <p>Your goals and interests drive every decision we make. We listen, advise, and act with your best outcome in mind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section class="section practice-bg" id="practice">
+  <p class="section-label">What We Do</p>
+  <h2>Areas of Legal Practice</h2>
+  <div class="practice-grid">
+    <div class="practice-card">
+      <div class="practice-icon">⚖️</div>
+      <h3>Civil Litigation</h3>
+      <p>We represent clients in High Court and Magistrate's Court proceedings, including contractual disputes, delictual claims, and enforcement of judgments.</p>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">🏠</div>
+      <h3>Property & Conveyancing</h3>
+      <p>From property transfers and bond registrations to sectional title disputes, we handle all aspects of property law with efficiency and accuracy.</p>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">👨‍👩‍👧</div>
+      <h3>Family Law</h3>
+      <p>Divorce, maintenance, child custody, and domestic violence matters handled with sensitivity, discretion, and a focus on the best interests of all parties.</p>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">📋</div>
+      <h3>Wills & Estates</h3>
+      <p>Estate planning, drafting of wills, deceased estate administration, and trust formation to protect your legacy and secure your family's future.</p>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">💼</div>
+      <h3>Labour Law</h3>
+      <p>Representing employees and employers at the CCMA and Labour Court, including unfair dismissal, retrenchments, and workplace disputes.</p>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">🏢</div>
+      <h3>Commercial Law</h3>
+      <p>Contract drafting and review, business formation, mergers, compliance advisory, and all aspects of commercial transactions and business law.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ATTORNEY -->
+<section class="attorney-section" id="attorney">
+  <p class="section-label">Our People</p>
+  <h2>Meet the Principal Attorney</h2>
+  <div class="attorney-grid">
+    <div class="attorney-img">NT</div>
+    <div class="attorney-info">
+      <h3>N.T. Shabangu</h3>
+      <span class="attorney-title">Principal Attorney · Notary · Conveyancer</span>
+      <p>N.T. Shabangu is an admitted attorney of the High Court of South Africa with over fifteen years of experience in a wide range of legal disciplines. Known for a forthright yet empathetic approach, he brings intellectual rigour and strategic insight to every mandate.</p>
+      <p>Having served clients from individuals and small businesses to established corporations, he understands that legal matters often come at moments of great personal or professional stress — and is committed to providing clear, actionable guidance that makes a real difference.</p>
+      <p>He is a member of the Law Society of South Africa and is admitted as a Notary and Conveyancer, allowing the firm to handle the full spectrum of property and notarial matters.</p>
+      <div class="qualifications">
+        <h4>Qualifications & Admissions</h4>
+        <ul class="qual-list">
+          <li>LLB — University of Limpopo</li>
+          <li>Admitted Attorney of the High Court of South Africa</li>
+          <li>Admitted Notary Public</li>
+          <li>Admitted Conveyancer</li>
+          <li>Member, Law Society of South Africa</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section practice-bg">
+  <p class="section-label">Why Choose Us</p>
+  <h2>The NT Shabangu Difference</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-num">15+</span>
+      <h4>Years Experience</h4>
+      <p>Deep practical knowledge across all major areas of South African law.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">500+</span>
+      <h4>Matters Handled</h4>
+      <p>A proven track record of successful outcomes for clients across all sectors.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">3</span>
+      <h4>Admitted Capacities</h4>
+      <p>Attorney, Notary and Conveyancer — a complete suite of legal services under one roof.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-num">24h</span>
+      <h4>Response Time</h4>
+      <p>We respond to all enquiries within 24 hours — because your matter cannot wait.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-bg">
+  <p class="section-label">Client Voices</p>
+  <h2>What Our Clients Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <span class="quote-mark">"</span>
+      <p>NT Shabangu handled our property transfer with remarkable professionalism. He kept us informed every step of the way and resolved complications that would have derailed lesser conveyancers.</p>
+      <p class="testimonial-author">Thabo M.</p>
+      <p class="testimonial-role">Property Purchaser, Pretoria</p>
+    </div>
+    <div class="testimonial">
+      <span class="quote-mark">"</span>
+      <p>During one of the most difficult periods of my life, NT Shabangu handled my divorce matter with sensitivity and precision. He advocated fiercely for my children's best interests.</p>
+      <p class="testimonial-author">Lerato K.</p>
+      <p class="testimonial-role">Family Law Client, Johannesburg</p>
+    </div>
+    <div class="testimonial">
+      <span class="quote-mark">"</span>
+      <p>Our business faced a serious contractual dispute. NT Shabangu's analysis was sharp, his strategy was sound, and the result exceeded our expectations. Highly recommended.</p>
+      <p class="testimonial-author">Sipho N.</p>
+      <p class="testimonial-role">Business Owner, Mpumalanga</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2>Schedule Your Consultation</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>We are here to help</h3>
+      <p style="color: var(--muted); line-height: 1.9; margin-bottom: 32px; font-size: 0.92rem;">Your initial consultation allows us to understand your legal matter and advise you on the best course of action. Contact us today — we respond within 24 hours.</p>
+      <div class="contact-detail">
+        <label>Telephone</label>
+        <p>+27 (0)__ ___ ____</p>
+      </div>
+      <div class="contact-detail">
+        <label>Email</label>
+        <p>info@ntshbangu.co.za</p>
+      </div>
+      <div class="contact-detail">
+        <label>Office Hours</label>
+        <p>Monday – Friday: 08:00 – 17:00<br>Saturday: By Appointment</p>
+      </div>
+      <div class="contact-detail">
+        <label>Address</label>
+        <p>NT Shabangu & Associates<br>South Africa</p>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form">
+        <div class="form-row">
+          <input type="text" placeholder="Your Full Name">
+          <input type="email" placeholder="Email Address">
+        </div>
+        <input type="tel" placeholder="Phone Number">
+        <select>
+          <option value="" disabled selected>Area of Law</option>
+          <option>Civil Litigation</option>
+          <option>Property & Conveyancing</option>
+          <option>Family Law</option>
+          <option>Wills & Estates</option>
+          <option>Labour Law</option>
+          <option>Commercial Law</option>
+          <option>Other</option>
+        </select>
+        <textarea placeholder="Brief description of your matter..."></textarea>
+        <button type="button">Request Consultation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">NT Shabangu & Associates</div>
+    <p>&copy; 2025 NT Shabangu and Associates. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#practice">Practice Areas</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const btn = document.getElementById('hamburger');
+const menu = document.getElementById('mobileMenu');
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+});
+function closeMenu() {
+  btn.classList.remove('open');
+  menu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
